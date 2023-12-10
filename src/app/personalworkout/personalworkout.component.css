@@ -1,0 +1,32 @@
+#main {
+    width: 100%;
+    background-image: url('https://i.postimg.cc/xjhFHtrn/photo-1558611848-73f7eb4001a1.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 20px;
+    background-color: rgb(0, 0, 0);
+    color: black
+}
+li{
+background-color: cornflowerblue;
+color: white;
+font-weight:bolder ;
+}
+.card-body{
+    height: 300px;
+    overflow:auto;
+}

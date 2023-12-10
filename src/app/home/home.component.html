@@ -1,0 +1,1025 @@
+<div>
+    <nav class="navbar navbar-expand-lg shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="\home" style="color: white;"><span style="color: gold;font-weight: bolder;">Hey {{iname}}</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="ms-auto me-auto">
+                    <button class="btn ms-auto me-5" id="headbutton" style="color: white;" routerLink="/nutritionplan"> nutritions</button>
+                    <button class="btn ms-5 me-auto" id="headbutton" style="color: white;"
+                        routerLink="/personalworkout">All
+                        workouts</button>
+
+                </div>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-outline-success" (click)="logout()" type="submit"
+                        style="color: white;">logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+</div>
+<div class="text-center w-100">
+
+    <button class="btn mt-5" id="workbutton" type="submit" (click)="underweight()"><span style="color: white;">workout
+            finished</span></button>
+
+</div>
+
+<div id="main">
+    <button id="personalbutton" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        style="color: rgb(255, 255, 255);"> personal info </button>
+    <button id="workoutbutton" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+        style="color: rgb(255, 255, 255);"> your workout plan</button>
+    <button id="nutributton" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3"
+        style="color: rgb(255, 255, 255);"> nutrition </button>
+    <button id="fitrackbutton" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal4"
+        routerLink="/fitnesstrack" style="color: rgb(255, 255, 255);">fit track</button>
+</div>
+
+
+
+
+<!--======================================= Modal for personal info===========================================-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+            
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">personal info</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+            </div>
+            <div class="modal-body">
+                <div id="wrapper1">
+                    <div id="main2">
+                        <div class="card" id="card1">
+                            <div class="card-body text-center">
+                                <div><strong>your height : <span style="color: yellow;">{{myHeight}}</span></strong>
+                                </div>
+                                <div> <strong>your weight : <span style="color: yellow;">{{myWeight}}</span></strong>
+                                </div>
+                                <div><strong>age: <span style="color: yellow;">{{myAge}}</span></strong></div>
+                                <div><strong>your BMI(Body Mass Index):<span
+                                            style="color: yellow;">{{bmi}}</span></strong>
+                                </div>
+
+                                <div>
+                                    <img src="https://i.postimg.cc/TYZZPfQB/Copy-of-BMI-Chart-1024x576.png"
+                                        style="width: 50%;;" alt="">
+                                </div>
+                                <div><strong>your are in <span style="color: yellow;">{{fitnessGoal}}
+                                        </span>division</strong></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="main2">
+                        <div class="card" id="card1">
+                            <div class="card-body text-center">
+                                <div>
+                                    <p><strong>UPDATE YOUR DATA</strong></p>
+                                </div>
+                                <form [formGroup]="dataUpdateForm" (ngSubmit)="getbmi()" (ngSubmit)="updateData()"
+                                    class="" action="">
+
+                                    <div class="form-group ">
+                                        <label for="height"><strong>Height</strong></label>
+                                        <input formControlName="height" type="number" class="form-control" id="height"
+                                            placeholder="{{myHeight}}" min="100" max="250">
+
+
+
+
+                                        <label for="weight"><strong>Weight</strong></label>
+                                        <input formControlName="weight" type="number" class="form-control" id="weight"
+                                            placeholder="{{myWeight}}" min="25" max="200">
+                                    </div>
+
+
+                                    <div><button class="btn mt-4" type="submit" (onclick)="getbmi()"
+                                            id="update"><strong>UPDATE</strong></button></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <!-====================================== modal for your workout plan =====================================================-->
+-->
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <h1 class="modal-title fs-5" id="exampleModalLabel">your workout plan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="fitnessGoal=='over weight'" id="weightloss">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne1" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    BEGINNER-  over weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+
+                                    <pre>
+                                        over weight
+
+                                        Day 1: Cardiovascular Exercise
+
+                                        20 minutes of brisk walking or jogging
+                                        15 minutes of cycling or stationary biking
+                                        10 minutes of jump rope or jumping jacks
+                                        Day 2: Strength Training
+
+                                        Bodyweight squats: 3 sets of 10 repetitions
+                                        Push-ups (modified or knee push-ups): 3 sets of 8 repetitions
+                                        Plank: Hold for 30 seconds, repeat 3 times
+                                        Dumbbell bicep curls: 3 sets of 10 repetitions (use light weights or household
+                                        items)
+                                        Day 3: Rest or Low-Impact Activity
+
+                                        Rest day or choose a low-impact activity like yoga or stretching.
+                                        Day 4: Cardiovascular Exercise
+
+                                        20 minutes of fast-paced walking on an inclined treadmill or outdoors
+                                        15 minutes of elliptical machine or stair climbing
+                                        10 minutes of high knees or mountain climbers
+                                        Day 5: Strength Training
+
+                                        Lunges: 3 sets of 10 repetitions per leg
+                                        Dumbbell shoulder presses: 3 sets of 10 repetitions (use light weights or
+                                        household items)
+                                        Bicycle crunches: 3 sets of 10 repetitions per side
+                                        Tricep dips: 3 sets of 8 repetitions (use a chair or bench)
+                                        Day 6: Cardiovascular Exercise
+
+                                        30 minutes of swimming or water aerobics
+                                        10 minutes of rowing machine or rowing exercises
+                                        10 minutes of burpees or squat jumps
+                                        Day 7: Rest or Active Recovery
+
+                                        Rest day or engage in light activities such as walking, stretching, or gentle
+                                        yoga.
+                                        Remember to warm up before each workout and cool down afterward. Listen to your
+                                        body and modify the exercises as needed. Gradually increase the intensity and
+                                        duration of your workouts over time as your fitness level improves.
+
+                                        Please note that it's important to consult with a healthcare professional before
+                                        starting any new exercise program, especially if you have any underlying health
+                                        conditions or concerns. They can provide personalized advice and ensure the
+                                        routine is suitable for your individual needs.
+                                    </pre>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo1" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    INTERMEDIATE- over weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT)
+
+                                        5-minute warm-up (brisk walk or light jog)
+                                        20 seconds of burpees, followed by 10 seconds of rest (repeat for 8 rounds)
+                                        20 seconds of mountain climbers, followed by 10 seconds of rest (repeat for 8
+                                        rounds)
+                                        20 seconds of jumping lunges, followed by 10 seconds of rest (repeat for 8
+                                        rounds)
+                                        5-minute cool-down (stretching)
+                                        Day 2: Strength Training
+
+                                        Barbell squats: 3 sets of 10 repetitions
+                                        Dumbbell bench press: 3 sets of 10 repetitions
+                                        Bent-over rows: 3 sets of 10 repetitions
+                                        Plank: Hold for 60 seconds, repeat 3 times
+                                        Day 3: Cardiovascular Exercise
+
+                                        30 minutes of running or jogging at a moderate pace
+                                        10 minutes of cycling or stationary biking
+                                        10 minutes of rowing machine or rowing exercises
+                                        Day 4: Active Rest or Low-Impact Activity
+
+                                        Choose an activity like yoga, Pilates, or swimming for active recovery and to
+                                        promote flexibility and mobility.
+                                        Day 5: Circuit Training
+
+                                        Jump rope: 1 minute
+                                        Kettlebell swings: 12 repetitions
+                                        Push-ups: 12 repetitions
+                                        Walking lunges: 12 repetitions per leg
+                                        Plank with shoulder taps: 10 repetitions per side
+                                        Repeat the circuit 3-4 times with minimal rest between exercises.
+                                        Day 6: Cardiovascular Exercise
+
+                                        45 minutes of cycling (indoor or outdoor) at a moderate to high intensity
+                                        10 minutes of incline treadmill walking or stair climbing
+                                        Day 7: Rest and Recovery
+
+                                        Take a complete rest day to allow your body to recover and recharge.
+                                        Remember to adjust the weights and intensity levels according to your fitness
+                                        level. It's essential to maintain proper form during strength training exercises
+                                        and listen to your body to avoid injury. Also, make sure to incorporate
+                                        stretching and flexibility exercises regularly.
+
+                                        Consult with a healthcare professional or a certified fitness trainer to ensure
+                                        the routine aligns with your specific goals, fitness level, and any underlying
+                                        health conditions.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree1" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    ADVANCED-over weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT)
+
+                                        10-minute warm-up (brisk walk or light jog)
+                                        30 seconds of burpees, followed by 15 seconds of rest (repeat for 10 rounds)
+                                        30 seconds of mountain climbers, followed by 15 seconds of rest (repeat for 10
+                                        rounds)
+                                        30 seconds of kettlebell swings, followed by 15 seconds of rest (repeat for 10
+                                        rounds)
+                                        10-minute cool-down (stretching)
+                                        Day 2: Strength Training
+
+                                        Barbell squats: 4 sets of 8 repetitions with heavy weights
+                                        Deadlifts: 4 sets of 8 repetitions with heavy weights
+                                        Barbell bench press: 4 sets of 8 repetitions with heavy weights
+                                        Pull-ups: 4 sets of 8 repetitions (add weight if necessary)
+                                        Day 3: Cardiovascular Endurance
+
+                                        60 minutes of steady-state running or cycling at a moderate pace
+                                        Day 4: Plyometric Training
+
+                                        Box jumps: 3 sets of 10 repetitions
+                                        Depth jumps: 3 sets of 8 repetitions
+                                        Medicine ball slams: 3 sets of 12 repetitions
+                                        Single-leg bounding: 3 sets of 10 repetitions per leg
+                                        Day 5: Circuit Training
+
+                                        Dumbbell thrusters: 3 sets of 12 repetitions
+                                        Renegade rows: 3 sets of 10 repetitions per arm
+                                        Jumping lunges: 3 sets of 10 repetitions per leg
+                                        Plank with alternating leg lifts: Hold for 60 seconds, repeat 3 times
+                                        Day 6: High-Intensity Cardiovascular Interval Training
+
+                                        10-minute warm-up (brisk walk or light jog)
+                                        1-minute sprint followed by 30 seconds of active recovery (repeat for 10 rounds)
+                                        10-minute cool-down (stretching)
+                                        Day 7: Active Recovery and Mobility Work
+
+                                        Engage in activities such as yoga, Pilates, or foam rolling to promote recovery,
+                                        flexibility, and mobility.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="fitnessGoal=='obese'" id="weightloss">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne1" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    BEGINNER- obese category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+
+                                    <pre>
+                                         obese
+
+                                        Program Schedule
+                                        To do this program, walk on 6 days; take one day off. For the strength exercises, use dumbbells, or other weights, at home or the gym.
+                                        
+                                        Day 1: Walk for at least 40 minutes at a brisk pace or one that makes you breathe heavily, but does not make you breathless.
+                                               Split the session up if it suits you, but try to keep up the intensity.
+                                        Day 2: Choose 8 dumbbell exercises. Together, these strength training exercises work many different muscles to contribute to weight loss and building a stronger body.
+                                               Do 3 sets of 12 repetitions of each exercise. If doing 8 exercises at once is too much, break it up into 4 exercises over two sessions.
+                                               Also try to fit in a 30- to 40-minute brisk walk.
+                                        Day 3: Do a circuit training workout. If necessary, modify it by slowing it down, so that you can complete at least three circuits.
+                                               If you like, swap in a different circuit training routine on alternate weeks.
+                                        Day 4: Walk for 40 minutes.
+                                        Day 5: Repeat the dumbbell program performed on day 2; walk for 30 to 40 minutes.
+                                        Day 6: Rest.
+                                        Day 7: Walk for 40 minutes, or take a rest day.
+                                    
+                                   </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo1" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    INTERMEDIATE-obese category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT)
+
+                                        5-minute warm-up (brisk walk or light jog)
+                                        20 seconds of burpees, followed by 10 seconds of rest (repeat for 8 rounds)
+                                        20 seconds of mountain climbers, followed by 10 seconds of rest (repeat for 8
+                                        rounds)
+                                        20 seconds of jumping lunges, followed by 10 seconds of rest (repeat for 8
+                                        rounds)
+                                        5-minute cool-down (stretching)
+                                        Day 2: Strength Training
+
+                                        Barbell squats: 3 sets of 10 repetitions
+                                        Dumbbell bench press: 3 sets of 10 repetitions
+                                        Bent-over rows: 3 sets of 10 repetitions
+                                        Plank: Hold for 60 seconds, repeat 3 times
+                                        Day 3: Cardiovascular Exercise
+
+                                        30 minutes of running or jogging at a moderate pace
+                                        10 minutes of cycling or stationary biking
+                                        10 minutes of rowing machine or rowing exercises
+                                        Day 4: Active Rest or Low-Impact Activity
+
+                                        Choose an activity like yoga, Pilates, or swimming for active recovery and to
+                                        promote flexibility and mobility.
+                                        Day 5: Circuit Training
+
+                                        Jump rope: 1 minute
+                                        Kettlebell swings: 12 repetitions
+                                        Push-ups: 12 repetitions
+                                        Walking lunges: 12 repetitions per leg
+                                        Plank with shoulder taps: 10 repetitions per side
+                                        Repeat the circuit 3-4 times with minimal rest between exercises.
+                                        Day 6: Cardiovascular Exercise
+
+                                        45 minutes of cycling (indoor or outdoor) at a moderate to high intensity
+                                        10 minutes of incline treadmill walking or stair climbing
+                                        Day 7: Rest and Recovery
+
+                                        Take a complete rest day to allow your body to recover and recharge.
+                                        Remember to adjust the weights and intensity levels according to your fitness
+                                        level. It's essential to maintain proper form during strength training exercises
+                                        and listen to your body to avoid injury. Also, make sure to incorporate
+                                        stretching and flexibility exercises regularly.
+
+                                        Consult with a healthcare professional or a certified fitness trainer to ensure
+                                        the routine aligns with your specific goals, fitness level, and any underlying
+                                        health conditions.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree1" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    ADVANCED-obese category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT)
+
+                                        10-minute warm-up (brisk walk or light jog)
+                                        30 seconds of burpees, followed by 15 seconds of rest (repeat for 10 rounds)
+                                        30 seconds of mountain climbers, followed by 15 seconds of rest (repeat for 10
+                                        rounds)
+                                        30 seconds of kettlebell swings, followed by 15 seconds of rest (repeat for 10
+                                        rounds)
+                                        10-minute cool-down (stretching)
+                                        Day 2: Strength Training
+
+                                        Barbell squats: 4 sets of 8 repetitions with heavy weights
+                                        Deadlifts: 4 sets of 8 repetitions with heavy weights
+                                        Barbell bench press: 4 sets of 8 repetitions with heavy weights
+                                        Pull-ups: 4 sets of 8 repetitions (add weight if necessary)
+                                        Day 3: Cardiovascular Endurance
+
+                                        60 minutes of steady-state running or cycling at a moderate pace
+                                        Day 4: Plyometric Training
+
+                                        Box jumps: 3 sets of 10 repetitions
+                                        Depth jumps: 3 sets of 8 repetitions
+                                        Medicine ball slams: 3 sets of 12 repetitions
+                                        Single-leg bounding: 3 sets of 10 repetitions per leg
+                                        Day 5: Circuit Training
+
+                                        Dumbbell thrusters: 3 sets of 12 repetitions
+                                        Renegade rows: 3 sets of 10 repetitions per arm
+                                        Jumping lunges: 3 sets of 10 repetitions per leg
+                                        Plank with alternating leg lifts: Hold for 60 seconds, repeat 3 times
+                                        Day 6: High-Intensity Cardiovascular Interval Training
+
+                                        10-minute warm-up (brisk walk or light jog)
+                                        1-minute sprint followed by 30 seconds of active recovery (repeat for 10 rounds)
+                                        10-minute cool-down (stretching)
+                                        Day 7: Active Recovery and Mobility Work
+
+                                        Engage in activities such as yoga, Pilates, or foam rolling to promote recovery,
+                                        flexibility, and mobility.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="fitnessGoal=='healthy weight' " id="maintain">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne2" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    BEGINNER-healthy weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+
+                                    <pre>
+                                        healthy weight
+                                    Program Schedule
+                                    To do this program, walk on 6 days; take one day off. For the strength exercises, use dumbbells, or other weights, at home or the gym.
+                                    
+                                    Day 1: Walk for at least 40 minutes at a brisk pace or one that makes you breathe heavily, but does not make you breathless.
+                                           Split the session up if it suits you, but try to keep up the intensity.
+                                    Day 2: Choose 8 dumbbell exercises. Together, these strength training exercises work many different muscles to contribute to weight loss and building a stronger body.
+                                           Do 3 sets of 12 repetitions of each exercise. If doing 8 exercises at once is too much, break it up into 4 exercises over two sessions.
+                                           Also try to fit in a 30- to 40-minute brisk walk.
+                                    Day 3: Do a circuit training workout. If necessary, modify it by slowing it down, so that you can complete at least three circuits.
+                                           If you like, swap in a different circuit training routine on alternate weeks.
+                                    Day 4: Walk for 40 minutes.
+                                    Day 5: Repeat the dumbbell program performed on day 2; walk for 30 to 40 minutes.
+                                    Day 6: Rest.
+                                    Day 7: Walk for 40 minutes, or take a rest day.
+                                
+                               </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo2" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    INTERMEDIATE-healthy weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+
+                                        Certainly! Here's an intermediate version of the program schedule:
+
+                                        Day 1: Walk for at least 40 minutes at a brisk pace or one that challenges you
+                                        but doesn't leave you breathless. Increase the intensity by incorporating
+                                        intervals, alternating between fast-paced walking and slower recovery periods.
+                                        Aim for a total of 5 intervals during your walk.
+
+                                        Day 2: Choose 8 compound exercises that engage multiple muscle groups. Perform 4
+                                        sets of 10 repetitions for each exercise, using challenging weights. Take
+                                        shorter rest periods between sets to maintain intensity. Additionally, include a
+                                        30- to 40-minute brisk walk or consider adding short bursts of jogging or
+                                        running during your walk.
+
+                                        Day 3: Perform a circuit training workout consisting of 5 different exercises
+                                        targeting different muscle groups. Complete 3 rounds of the circuit, performing
+                                        12 to 15 repetitions of each exercise. To increase intensity, minimize rest
+                                        periods between exercises and rounds. You can also incorporate high-intensity
+                                        interval training (HIIT) by adding short bursts of intense cardio exercises like
+                                        burpees or jumping jacks between circuit exercises.
+
+                                        Day 4: Engage in a longer walk for 50 to 60 minutes. Incorporate inclines or
+                                        stairs to make it more challenging and activate different muscle groups.
+
+                                        Day 5: Repeat the dumbbell program performed on day 2, but increase the weight
+                                        used for each exercise. Aim for 4 sets of 8 repetitions, using challenging
+                                        weights. Include a 20- to 30-minute brisk walk or consider adding sprints or
+                                        hill intervals during your walk.
+
+                                        Day 6: Rest and allow your body to recover. You can engage in light stretching
+                                        or yoga for active recovery.
+
+                                        Day 7: Walk for 40 minutes at a brisk pace, or take a complete rest day to allow
+                                        your body to recover fully.
+
+                                        Remember to listen to your body and adjust the intensity and weights according
+                                        to your fitness level. It's always a good idea to consult with a healthcare
+                                        professional or a certified fitness trainer before starting any new exercise
+                                        program.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree2" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    ADVANCED-healthy weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT) Cardio Workout
+                                        Perform a 5-minute warm-up by jogging or brisk walking. Then, do 10 rounds of
+                                        1-minute intervals, alternating between an all-out sprint and a 1-minute active
+                                        recovery (slow jog or walk). Finish with a 5-minute cool-down walk.
+
+                                        Day 2: Upper Body Strength Training
+                                        Focus on compound exercises that target the major muscle groups of the upper
+                                        body. Perform 5 sets of 8 to 10 repetitions for each exercise, using heavy
+                                        weights. Incorporate exercises like bench press, pull-ups, rows, shoulder press,
+                                        and tricep dips. Rest for 60 to 90 seconds between sets.
+
+                                        Day 3: Circuit Training and Plyometrics
+                                        Design a challenging circuit that combines strength exercises and explosive
+                                        plyometric movements. Perform 3 rounds of the circuit, with minimal rest between
+                                        exercises and rounds. Include exercises like jump squats, box jumps, kettlebell
+                                        swings, push-ups, lunges, and planks.
+
+                                        Day 4: Active Recovery and Cardio
+                                        Engage in a low-impact activity for 60 minutes, such as swimming, cycling, or
+                                        practicing yoga. Keep the intensity moderate to promote active recovery and
+                                        improve flexibility and mobility.
+
+                                        Day 5: Lower Body Strength Training
+                                        Focus on compound exercises that target the major muscle groups of the lower
+                                        body. Perform 5 sets of 8 to 10 repetitions for each exercise, using heavy
+                                        weights. Include exercises like squats, deadlifts, lunges, hip thrusts, and calf
+                                        raises. Take 60 to 90 seconds of rest between sets.
+
+                                        Day 6: High-Intensity Cardio and Core Workout
+                                        Perform a series of high-intensity cardio exercises, such as sprints, shuttle
+                                        runs, or jumping rope, for 20 to 30 minutes. Follow it with an intense core
+                                        workout that includes exercises like planks, Russian twists, bicycle crunches,
+                                        and hanging leg raises.
+
+                                        Day 7: Rest and Recovery
+                                        Take a complete rest day to allow your body to recover fully. Engage in light
+                                        stretching, foam rolling, or gentle yoga to promote relaxation and mobility.
+
+
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="fitnessGoal=='under weight'" id="weightgain">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    BEGINNER- under weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+
+                                    <pre>
+                                    under weight
+                                        Program Schedule
+                                        To do this program, walk on 6 days; take one day off. For the strength exercises, use dumbbells, or other weights, at home or the gym.
+                                        
+                                        Day 1: Walk for at least 40 minutes at a brisk pace or one that makes you breathe heavily, but does not make you breathless.
+                                               Split the session up if it suits you, but try to keep up the intensity.
+                                        Day 2: Choose 8 dumbbell exercises. Together, these strength training exercises work many different muscles to contribute to weight loss and building a stronger body.
+                                               Do 3 sets of 12 repetitions of each exercise. If doing 8 exercises at once is too much, break it up into 4 exercises over two sessions.
+                                               Also try to fit in a 30- to 40-minute brisk walk.
+                                        Day 3: Do a circuit training workout. If necessary, modify it by slowing it down, so that you can complete at least three circuits.
+                                               If you like, swap in a different circuit training routine on alternate weeks.
+                                        Day 4: Walk for 40 minutes.
+                                        Day 5: Repeat the dumbbell program performed on day 2; walk for 30 to 40 minutes.
+                                        Day 6: Rest.
+                                        Day 7: Walk for 40 minutes, or take a rest day.
+                                    
+                                   </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    INTERMEDIATE-under weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: Walk for at least 40 minutes at a brisk pace or one that challenges you,
+                                        but still allows you to maintain a conversation. Instead of splitting the
+                                        session, try to keep the intensity consistent throughout the duration of the
+                                        walk.
+
+                                        Day 2: Choose 8 compound dumbbell exercises that target different muscle groups.
+                                        Increase the intensity by using heavier weights. Perform 4 sets of 10
+                                        repetitions for each exercise. If 8 exercises at once is too much, you can break
+                                        it up into 4 exercises during one session and another 4 exercises during a
+                                        separate session. Also, fit in a 30- to 40-minute brisk walk to promote
+                                        cardiovascular health.
+
+                                        Day 3: Engage in a circuit training workout with a focus on compound movements.
+                                        Complete at least three circuits, but aim to increase the intensity and speed to
+                                        challenge yourself. If you prefer variety, you can swap in a different circuit
+                                        training routine on alternate weeks.
+
+                                        Day 4: Walk for 40 minutes, focusing on maintaining a brisk pace. Incorporate
+                                        inclines or stairs during your walk to add extra resistance and engage different
+                                        muscle groups.
+
+                                        Day 5: Repeat the dumbbell program performed on day 2, but increase the weights
+                                        used for each exercise. Aim for 4 sets of 8 repetitions, using challenging
+                                        weights that push your limits. Maintain good form and focus on increasing
+                                        resistance gradually to promote muscle growth. Additionally, include a 30-minute
+                                        walk at a moderate pace.
+
+                                        Day 6: Rest and allow your body to recover. Adequate rest is crucial for muscle
+                                        growth and overall recovery.
+
+                                        Day 7: Walk for 40 minutes at a moderate pace to promote active recovery.
+                                        Alternatively, you can take a complete rest day to allow for full recovery and
+                                        rejuvenation.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    ADVANCED-under weight category
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <pre>
+                                        Day 1: High-Intensity Interval Training (HIIT) and Resistance Training
+                                        Begin with a 10-minute dynamic warm-up. Perform 5 rounds of HIIT, alternating
+                                        between 30 seconds of all-out effort (sprints, cycling, rowing, etc.) and 30
+                                        seconds of active recovery (light jogging or walking). Follow this with a
+                                        resistance training session focusing on compound exercises like squats,
+                                        deadlifts, bench press, overhead press, pull-ups, and rows. Perform 5 sets of
+                                        5-8 repetitions with heavy weights, aiming to increase the weights
+                                        progressively.
+
+                                        Day 2: Rest and Recovery
+                                        Take a complete rest day to allow your body to recover and repair.
+
+                                        Day 3: Plyometric Training and Upper Body Hypertrophy
+                                        Engage in explosive plyometric exercises such as box jumps, depth jumps, and
+                                        medicine ball throws for 20-30 minutes. Follow this with an upper body
+                                        hypertrophy workout, targeting individual muscle groups with exercises like
+                                        bench press, incline dumbbell press, bent-over rows, pull-ups, shoulder press,
+                                        and bicep curls. Perform 3-4 sets of 8-12 repetitions with challenging weights.
+
+                                        Day 4: Active Recovery and Low-Intensity Cardio
+                                        Engage in low-impact activities such as swimming, cycling, or yoga for 60
+                                        minutes to promote active recovery and improve flexibility and mobility.
+
+                                        Day 5: Lower Body Hypertrophy and Core Training
+                                        Focus on lower body hypertrophy exercises like squats, lunges, Romanian
+                                        deadlifts, hip thrusts, and calf raises. Perform 3-4 sets of 8-12 repetitions
+                                        with heavy weights. Follow this with a core training session incorporating
+                                        exercises like planks, Russian twists, hanging leg raises, and cable
+                                        woodchoppers. Aim for 3-4 sets of 10-15 repetitions for each exercise.
+
+                                        Day 6: Functional Training and Cardio
+                                        Engage in functional training exercises that mimic real-life movements, such as
+                                        kettlebell swings, battle ropes, farmer's walks, and agility ladder drills.
+                                        Perform 4-5 sets of 10-15 repetitions for each exercise. Follow this with 20-30
+                                        minutes of cardiovascular exercise, such as running, cycling, or rowing, at a
+                                        moderate intensity.
+
+                                        Day 7: Rest and Recovery
+                                        Take a complete rest day to allow your body to recover fully. Engage in light
+                                        stretching, foam rolling, or gentle yoga to promote relaxation and mobility.
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ===================================madal for your diet plan=========================================== -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><span style="color: red;">
+                        <h3>SUGGESTED DIET PLAN</h3>
+                    </span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <div *ngIf="fitnessGoal=='under weight'" id="weightgain">
+                    <pre class="c1">
+                        weight gain
+
+                        Meal 1:
+
+                        2 whole eggs
+                        2 slices of whole wheat toast with peanut butter
+                        1 cup of Greek yogurt with mixed berries
+                        1 glass of whole milk
+
+
+                        Snack 1:
+
+                        1 banana
+                        Handful of almonds or cashews 
+
+                        Meal 2:
+
+                        Grilled chicken breast
+                        1 cup of quinoa
+                        Steamed vegetables (broccoli, carrots, cauliflower)
+
+                        Snack 2:
+
+                        Protein shake made with milk, protein powder, and a tablespoon of almond butter
+
+                        Meal 3:
+
+                        Salmon fillet
+                        1 cup of brown rice
+                        Mixed greens salad with olive oil and lemon dressing
+
+                        Snack 3:
+
+                        1 apple
+                        2 tablespoons of almond butter
+
+                        Meal 4:
+
+                        Lean beef steak
+                        Sweet potato wedges
+                        Grilled asparagus
+
+                        Snack 4:
+
+                        Greek yogurt with honey and mixed nuts
+
+                        Before Bed:
+
+                        1 cup of cottage cheese
+                        1 tablespoon of flaxseeds
+                    </pre>
+                </div>
+                <div *ngIf="fitnessGoal=='healthy weight' " id="maintain">
+
+                    <pre class="c1">
+                        Meal 1:
+
+                        Scrambled eggs (3 egg whites and 1 whole egg)
+                        2 slices of turkey bacon
+                        1 cup of cooked oatmeal with a scoop of protein powder mixed in
+                        1 small apple
+
+                        Snack 1:
+
+                        Greek yogurt (plain or flavored) with a handful of mixed nuts
+
+                        Meal 2:
+
+                        Grilled chicken breast
+                        Quinoa or brown rice
+                        Steamed broccoli and cauliflower
+
+                        Snack 2:
+
+                        Protein shake made with milk or water and a scoop of protein powder
+
+                        Meal 3:
+
+                        Baked salmon or tuna steak
+                        Mixed greens salad with cherry tomatoes, cucumber, and avocado
+                        Olive oil and balsamic vinegar dressing
+
+                        Snack 3:
+
+                        Cottage cheese with sliced almonds and berries
+
+                        Meal 4:
+
+                        Lean ground turkey or beef stir-fry with mixed vegetables (bell peppers, onions, mushrooms,
+                        etc.) in olive oil or coconut oil
+                        Serve over a bed of cauliflower rice or whole wheat pasta
+
+                        Snack 4:
+
+                        Hard-boiled eggs with carrot sticks or celery
+
+                        Before Bed:
+
+                        Casein protein shake with almond milk or water </pre>
+                </div>
+                <div *ngIf="fitnessGoal=='over weight'" id="weightloss">
+                    <pre class="c1">
+                        weightloss
+
+                        Meal 1:
+
+                        Overnight oats made with 1/2 cup of rolled oats, 1 cup of unsweetened almond milk, 1 tablespoon
+                        of chia seeds, and mixed berries.
+                        A cup of green tea or black coffee.
+
+                        Snack 1:
+
+                        A small apple or a handful of baby carrots with hummus.
+
+                        Meal 2:
+
+                        Grilled chicken breast or baked tofu.
+                        A generous portion of mixed greens with cherry tomatoes, cucumber, and a light vinaigrette
+                        dressing.
+
+                        Snack 2:
+
+                        Greek yogurt (plain or flavored) with a sprinkle of granola or sliced almonds.
+
+                        Meal 3:
+
+                        Baked salmon or roasted cod.
+                        1/2 cup of quinoa or brown rice.
+                        Steamed vegetables such as broccoli, cauliflower, or asparagus.
+
+                        Snack 3:
+
+                        Sliced bell peppers with guacamole or a small handful of unsalted nuts.
+
+                        Meal 4:
+
+                        Lean turkey or chicken breast wrap with whole wheat tortilla, lettuce, tomato, and mustard.
+                        A side salad with mixed greens.
+
+                        Snack 4:
+
+                        A hard-boiled egg or a small protein smoothie made with almond milk, spinach, and a scoop of
+                        protein powder.
+
+                        Before Bed:
+
+                        Herbal tea or a glass of warm milk.
+                        Additional Tips:
+
+
+                        Drink plenty of water throughout the day to stay hydrated.
+                        Limit sugary beverages and opt for water or unsweetened herbal tea.
+                        Include a variety of vegetables and fruits in your meals for added fiber and nutrients.
+                        Practice portion control and listen to your body's hunger and fullness cues.
+                        Incorporate regular physical activity or exercise into your routine for optimal weight loss
+                        results.
+                        = 2,630 calories
+
+
+                    </pre>
+                </div>
+                <div *ngIf="fitnessGoal=='obese'" id="weightloss">
+                    <pre class="c1">
+                        weight loss
+
+                        Meal 1:
+
+                        Overnight oats made with 1/2 cup of rolled oats, 1 cup of unsweetened almond milk, 1 tablespoon
+                        of chia seeds, and mixed berries.
+                        A cup of green tea or black coffee.
+
+                        Snack 1:
+
+                        A small apple or a handful of baby carrots with hummus.
+
+                        Meal 2:
+
+                        Grilled chicken breast or baked tofu.
+                        A generous portion of mixed greens with cherry tomatoes, cucumber, and a light vinaigrette
+                        dressing.
+
+                        Snack 2:
+
+                        Greek yogurt (plain or flavored) with a sprinkle of granola or sliced almonds.
+
+                        Meal 3:
+
+                        Baked salmon or roasted cod.
+                        1/2 cup of quinoa or brown rice.
+                        Steamed vegetables such as broccoli, cauliflower, or asparagus.
+
+                        Snack 3:
+
+                        Sliced bell peppers with guacamole or a small handful of unsalted nuts.
+
+                        Meal 4:
+
+                        Lean turkey or chicken breast wrap with whole wheat tortilla, lettuce, tomato, and mustard.
+                        A side salad with mixed greens.
+
+                        Snack 4:
+
+                        A hard-boiled egg or a small protein smoothie made with almond milk, spinach, and a scoop of
+                        protein powder.
+
+                        Before Bed:
+
+                        Herbal tea or a glass of warm milk.
+                        Additional Tips:
+
+                        Drink plenty of water throughout the day to stay hydrated.
+                        Limit sugary beverages and opt for water or unsweetened herbal tea.
+                        Include a variety of vegetables and fruits in your meals for added fiber and nutrients.
+                        Practice portion control and listen to your body's hunger and fullness cues.
+                        Incorporate regular physical activity or exercise into your routine for optimal weight loss
+                        results.
+
+
+                    </pre>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--=============================================== modal for all workouts=========================================== -->

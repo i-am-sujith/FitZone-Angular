@@ -1,0 +1,24 @@
+
+#main{
+    background-color: rgba(0, 0, 0, 0.153);
+    border-radius: 30px;
+    font-family: "Courier New", monospace;
+    color: black;
+}
+#box{
+    display: flex;
+    flex-direction: row;
+}
+#wrapper{
+    width: 100%;
+    height: 100vh;
+    color: black;
+}
+
+#gender{
+  color: black;
+}
+#male , #female , #select{
+  color: black;
+}
+

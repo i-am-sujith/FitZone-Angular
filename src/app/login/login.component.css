@@ -1,0 +1,10 @@
+body {
+    display: flex;
+}
+
+#main {
+    background-color: rgba(0, 0, 0, 0.153);
+    border-radius: 30px;
+    font-family: "Courier New", monospace;
+    color: white;
+}

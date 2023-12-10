@@ -1,0 +1,32 @@
+#main {
+    width: 100%;
+    background-image: url('https://i.postimg.cc/xjhFHtrn/photo-1558611848-73f7eb4001a1.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 20px;
+    background-color: rgb(2, 110, 38);
+    color: rgb(255, 255, 255)
+}
+li{
+background-color: rgb(1, 52, 22);
+color: white;
+font-weight:bolder ;
+}
+.card-body{
+    height: auto;
+    overflow:auto;
+}

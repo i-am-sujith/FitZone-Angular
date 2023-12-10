@@ -1,0 +1,13 @@
+th{
+    background-color:rgba(0, 0, 0, 0.509) ;
+    color: rgb(146, 180, 11);
+    font-weight: bolder;
+}
+td{
+    background-color:rgba(0, 0, 0, 0.507) ;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+}
+#bmi{
+    color: rgb(179, 255, 0);
+}

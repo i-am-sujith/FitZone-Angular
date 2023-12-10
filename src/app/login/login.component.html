@@ -1,0 +1,27 @@
+<div class="container w-50 mt-5" id="main">
+       <div class="row justify-content-center text-center ">
+              <h3 class="mt-5" style="color: rgb(2, 82, 82);"><strong>WELCOME TO FITZONE-X</strong></h3>
+              <div class="col-md-6">
+                     <form [formGroup]="loginGroup"  (ngSubmit)="login()" class="text-center">
+                            <div class="form-group mt-5">
+                                   <input formControlName="username" type="text" class="form-control" id="username"
+                                          placeholder="Enter your username">
+                            </div>
+                            <div *ngIf="(this.loginGroup.get('username')?.errors)&&(this.loginGroup.get('username')?.touched)">
+                                   <p>must contain characters and nummbers only</p>
+                               </div>
+           
+                            <div class="form-group mt-5">
+                                   <input formControlName="password" type="password" class="form-control" id="password"
+                                          placeholder="Enter your password">
+                            </div>
+                            <div *ngIf="(this.loginGroup.get('password')?.errors)&&(this.loginGroup.get('password')?.touched)">
+                                   <p>must contain characters and nummbers only</p>
+                               </div>
+
+                            <button type="submit" class="btn btn-primary mt-5 mb-5" >Login</button>
+                     </form>
+                     <div class="mb-5">New user?<a href="register"><span style="color: yellow;">Register Now</span></a></div>
+              </div>
+       </div>
+</div>

@@ -1,0 +1,162 @@
+#main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 75%;
+    height: 75vh;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+}
+
+#main button {
+    height: 200px;
+    width: 150px;
+    border-radius: 20px;
+    border: none;
+    margin: 30px;
+    transition: background-color .5s;
+    transition: background-color .5s, transform 0.3s;
+}
+
+#main button:hover {
+    transform: scale(1.1);
+    background-color:#04293A;
+    color: greenyellow;
+
+}
+#update{
+    background-color: red;
+}
+#update:hover{
+    transform:scale(1.1);
+}
+
+
+
+#main2 {
+    width: 40%;
+    margin: auto;
+    margin-top: 10%;
+
+}
+
+#wrapper1 {
+    display: flex;
+    flex-direction: row;
+}
+
+#card1 {
+    height: 300px;
+    background-color:#04293abd;
+}
+
+.modal-body {
+    background-image: url('https://i.postimg.cc/xjhFHtrn/photo-1558611848-73f7eb4001a1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.modal-header {
+
+    background: linear-gradient(to right, #000000, #04293A, #000000, #0F4C75);
+    animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes moveLine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+.accordion-button {
+    background-color: #0f3360;
+    color: white;
+}
+
+.accordion-body {
+    background-color: #055e68;
+}
+
+#personalbutton {
+    background-color: #04293a9a;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bolder;
+
+}
+
+#workoutbutton {
+    background-color: #04293aa0;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bolder;
+}
+
+#nutributton {
+    background-color: #04293a97;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bolder;
+}
+
+#fitrackbutton {
+    background-color: #04293a97;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bolder;
+}
+
+#workbutton {
+    height: 50px;
+    width: 150px;
+    padding: 5px;
+    display: inline;
+    border-radius: 20px;
+    border: none;
+    background-color: #04293a8a;
+    transition: background-color .5s;
+    transition: background-color .5s, transform 0.3s;
+}
+
+#workbutton:hover {
+    transform: scale(1.1);
+    background-color: #04293A;
+}
+
+
+
+#headbutton {
+    background-color: #04293a31;
+}
+
+#headbutton:hover {
+    transform: scale(1.1);
+    background-color: #04293A;
+
+}
+.modal-header button{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: blue;
+}
+.c1{
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    background-color: #0000009c;
+}

@@ -1,0 +1,27 @@
+<button class="btn" style="background-color: rgba(0, 0, 0, 0.47); color: white;font-weight: bolder; " routerLink="/home">HOME</button>
+<div class="container">
+  <table class="table ">
+    <thead>
+      <tr class="">
+        <th scope="col">DATE</th>
+        <th scope="col">WORKOUT PLAN</th>
+        <th scope="col">CALORIE BURNED</th>
+        <th scope="col">CALORIE INTAKE</th>
+        <th scope="col">BMI</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of fitness.slice().reverse()">
+        <td>{{i.date}}</td>
+        <td>{{i.workoutType}}</td>
+        <td>{{i.calorieBurned}}</td>
+        <td>{{i.calorieIntake}}</td>
+        <td id="bmi">{{i.bmi}}</td>
+      </tr>
+            
+    </tbody>
+  </table>
+</div>
+
+
